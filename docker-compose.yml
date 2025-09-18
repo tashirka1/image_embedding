@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=default
+      - POSTGRES_USER=default
+      - POSTGRES_PASSWORD=default
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
