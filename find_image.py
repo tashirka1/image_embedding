@@ -44,7 +44,7 @@ def main():
         image_embedding = get_image_embedding(image).tolist()
         print("image_embedding")
         cur.execute(
-            "SELECT file_name, image_embedding <-> %s::halfvec, image_embedding <=> %s::halfvec FROM items ORDER BY image_embedding <-> %s::halfvec LIMIT 5;",
+            "SELECT file_name, image_embedding <-> %s::halfvec, image_embedding <=> %s::halfvec FROM items ORDER BY image_embedding <-> %s::halfvec LIMIT 10;",
             (image_embedding, image_embedding, image_embedding,)
         )
         rows = cur.fetchall()
@@ -56,7 +56,7 @@ def main():
         for embedding in embeddings:
             now = datetime.now()
             cur.execute(
-                "SELECT file_name, face_embedding <-> %s::vector, face_embedding <=> %s::vector FROM items ORDER BY face_embedding <-> %s::vector LIMIT 5;",
+                "SELECT file_name, face_embedding <-> %s::vector, face_embedding <=> %s::vector FROM items ORDER BY face_embedding <-> %s::vector LIMIT 10;",
                 (embedding["embedding"], embedding["embedding"], embedding["embedding"],)
             )
             rows = cur.fetchall()

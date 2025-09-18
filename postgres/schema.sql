@@ -2,8 +2,8 @@
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Create sample table
-DROP TABLE items;
-CREATE TABLE items (
+DROP TABLE IF EXISTS items;
+CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
     file_name VARCHAR(255) NOT NULL,
     face INTEGER,
@@ -11,5 +11,5 @@ CREATE TABLE items (
     image_embedding halfvec(2048),
     UNIQUE(file_name, face)
 );
-CREATE INDEX idx_items_face_embedding ON items USING hnsw (face_embedding vector_l2_ops);
-CREATE INDEX idx_items_image_embedding ON items USING hnsw (image_embedding halfvec_l2_ops);
+CREATE INDEX IF NOT EXISTS idx_items_face_embedding ON items USING hnsw (face_embedding vector_l2_ops);
+CREATE INDEX IF NOT EXISTS idx_items_image_embedding ON items USING hnsw (image_embedding halfvec_l2_ops);
