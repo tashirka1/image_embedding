@@ -19,4 +19,3 @@ Find similar image
 ```
 python3 find_image.py
 ```
-# image_embedding
